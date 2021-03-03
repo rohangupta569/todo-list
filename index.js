@@ -4,11 +4,20 @@ const app = express();
 
 //connecting to the database
 const db = require('./config/mongoose');
-//setup the view engine 
+
+//Import the Todo object from the models
+const Todo = require('./models/todo');
+
+//using ejs as template engine 
 app.set('view engine','ejs');
+
+//set the path of the views directory
 app.set('views' , './views');
+
+//for decoding url
 app.use(express.urlencoded({extended: true}));
 
+//home page url
 app.get('/',function(req,res){
     return res.render('home',{
         title:"To do list"
@@ -16,7 +25,7 @@ app.get('/',function(req,res){
 
 });
 
-
+//server
 app.listen(port,function(err){
 
     if(err)
