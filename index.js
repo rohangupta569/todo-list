@@ -18,12 +18,38 @@ app.set('views' , './views');
 app.use(express.urlencoded({extended: true}));
 
 //home page url
-app.get('/',function(req,res){
-    return res.render('home',{
-        title:"To do list"
+app.get('/' , function(req,res){
+
+    Todo.find({},function(err,todos){
+        if(err){
+            console.log('error' , err);
+            return ;
+        }
+        return res.render('home',{
+            title : "TODO App",
+            todo_list :todos
+        });
     });
 
 });
+
+//This is url for creating task in database
+app.post('/create-todo',function(req , res){
+    Todo.create({
+        description: req.body.description,
+        category: req.body.category,
+        date: req.body.date
+    },function(err,newtodo){
+        if (err) {
+            console.log('error in creating task', err);
+            return;
+        }
+        return res.redirect('back');
+    })
+});
+
+
+
 
 //server
 app.listen(port,function(err){
