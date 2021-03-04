@@ -17,6 +17,9 @@ app.set('views' , './views');
 //for decoding url
 app.use(express.urlencoded({extended: true}));
 
+// USE THE CSS AND JAVASCRIPT FILE
+app.use(express.static('assets'));
+
 //home page url
 app.get('/' , function(req,res){
 

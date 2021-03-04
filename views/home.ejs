@@ -7,6 +7,8 @@
      <!-- FONT AWESOME -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+     <!-- External CSS Linking-->
+        <link rel="stylesheet" href="/css/home.css">
      <!-- Title of the page  -->
         <title>
             <%= title %>
@@ -87,7 +89,7 @@
                 <%  for(let i = todo_list.length - 1; i >= 0; i--) { %>
                     <div id="task">
                         <!-- CHECK BOX, DESCRIPTION AND CATEGORY INFORMATION OF THE TASK SHOW HERE  -->
-                        <input type="checkbox" id="check-box" name=task value="<%= todo_list[i]._id %>">
+                        <input type="checkbox" id="check-box" name="task" value="<%= todo_list[i]._id %>">
                         <!-- Each task of the todo list -->
                         <div class="task-container">
                             <span id="task-description">
