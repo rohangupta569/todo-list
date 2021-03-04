@@ -49,6 +49,42 @@ app.post('/create-todo',function(req , res){
 });
 
 
+// THIS IS DELETE URL FOR SINGLE TASK FROM DATABASE
+app.get('/delete_todo_single', function(req, res) {
+    let id = req.query.id;
+    Todo.findByIdAndDelete(id, function(err){
+        if(err) {
+            console.log("error");
+            return;
+        }
+        return res.redirect('back');
+    });
+});
+
+// THIS IS URL TO DELETE THE MULTIPLE ITEM FROM DATABASE
+app.post('/delete-todo', function(req, res) {
+    let ids = req.body.task;
+    // if single task is to be deleted
+    if (typeof(ids) == "string") {
+        Todo.findByIdAndDelete(ids, function(err) {
+            if (err) { 
+                console.log("error in deleting"); 
+                return; 
+            }
+        });
+    } else {    // if multiple task is to be deleted
+        for (let i = 0; i < ids.length; i++) {
+            Todo.findByIdAndDelete(ids[i], function (err) {
+                if (err) { 
+                    console.log("error in deleting");
+                    return; 
+                }
+            });
+        }
+    }
+    return res.redirect('back');
+});
+
 
 
 //server

@@ -53,38 +53,70 @@
                           <input id="date-input-box" type="date" name="date" placeholder="" required>
                        </div>
                    </div>
-                    <!-- Add Task Button --> 
-                   <button type="submit" class="add-button">
-                      <i class="fa fa-plus" aria-hidden="true"></i> 
-                       &nbsp; ADD TASK
-                    </button>
+                   <!-- 'Add' & 'Delete' Button Container of the form -->
+                  <div class="buttons-container">
+
+                       <!-- Add Task Button -->
+                       <div> 
+                          <button type="submit" class="add-button">
+                              <i class="fa fa-plus" aria-hidden="true"></i> 
+                              &nbsp; ADD TASK
+                          </button>
+                       </div>
+
+                        &nbsp;
+
+                       <!-- Delete Tasks Button -->
+                       <div>
+                          <button type="submit" class="delete-button" form="delete1">
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                              &nbsp; DELETE TASKS
+                          </button>
+                      </div>
+
+                    </div>
+                    
                 </form>
-            <!-- Fetching data from the database -->
-            <%  for(let i = todo_list.length - 1; i >= 0; i--) { %>
-                <div id="task">
-                    <!-- CHECK BOX, DESCRIPTION AND CATEGORY INFORMATION OF THE TASK SHOW HERE  -->
-                    <input type="checkbox" id="check-box" name=task value="<%= todo_list[i]._id %>">
-                    <!-- Each task of the todo list -->
-                    <div class="task-container">
-                        <span id="task-description">
-                            <%= todo_list[i].description %>
-                        </span>
-                        <br>
-                        <span id="task-date">
-                            <i class="far fa-calendar-alt" aria-hidden="true"></i>
-                            &nbsp;
-                            <%= todo_list[i].date  %>
-                        </span>
+            <!-- Div containing all the tasks present in the database -->
+            <div class="show">
+
+            <!-- Form to 'delete' task(s) from the database -->
+            <form id="delete1" action="/delete-todo" method="POST" >
+
+                <!-- Fetching data from the database -->
+                <%  for(let i = todo_list.length - 1; i >= 0; i--) { %>
+                    <div id="task">
+                        <!-- CHECK BOX, DESCRIPTION AND CATEGORY INFORMATION OF THE TASK SHOW HERE  -->
+                        <input type="checkbox" id="check-box" name=task value="<%= todo_list[i]._id %>">
+                        <!-- Each task of the todo list -->
+                        <div class="task-container">
+                            <span id="task-description">
+                                <%= todo_list[i].description %>
+                            </span>
+                            <br>
+                            <span id="task-date">
+                                <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                                &nbsp;
+                                <%= todo_list[i].date  %>
+                            </span>
+                        </div>
+                        <div id="task-category"> 
+                            <%= todo_list[i].category  %>
+                        </div>
+                        <!-- Cross Icon to remove task from the list (database) -->
+                        <div id="remove-task-icon">
+                            <a href="/delete_todo_single/?id=<%= todo_list[i]._id %>">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        
                     </div>
-                    <div id="task-category"> 
-                        <%= todo_list[i].category  %>
-                    </div>
-                </div>
-            <% } %>
+                   <% } %>
+
+                </form>
+
+            </div>
+
         </div>
-
-
-
-
     </body>
 </html>
