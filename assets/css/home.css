@@ -175,7 +175,7 @@ select {
     width: 60%;
 }
 /* CATEGORY BOX of task list */
-#task-category {
+.task-category {
     background-color: #c048a6;
     color: aliceblue;
     height: 18px;
