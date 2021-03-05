@@ -23,16 +23,37 @@ app.use(express.static('assets'));
 //home page url
 app.get('/' , function(req,res){
 
+    //first way to sort date (coding ninjas method)
     Todo.find({},function(err,todos){
         if(err){
             console.log('error' , err);
             return ;
         }
+        //sort on the base of date
+        todos.sort((a,b)=>b.date-a.date)
         return res.render('home',{
             title : "TODO App",
             todo_list :todos
         });
     });
+
+    //second way to sort date (tushar's method)
+    // Todo.find({})
+    //     .then((todos) => {
+    //         //sort on the base of date 
+    //         todos.sort((a, b) => b.date - a.date)
+    //         return res.render('home', {
+    //             title: "TODO App",
+    //             todo_list: todos
+    //         });
+    //     })
+    //     .catch(err => console.error(err))
+
+
+
+
+
+
 
 });
 
