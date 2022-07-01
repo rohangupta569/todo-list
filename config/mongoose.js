@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //connect to the database
 //mongoose.connect('mongodb://localhost/todo_list_db',{useNewUrlParser: true, useUnifiedTopology: true});
-const uri = "mongodb+srv://rohangupta569:Rohan@1234@cluster0.fdqlz.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://rohangupta569:mongodb@1234@cluster0.4jubb.mongodb.net/?retryWrites=true&w=majority";
 mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true});
 //acquire the connection (to check if its successful)
 const db = mongoose.connection; 
